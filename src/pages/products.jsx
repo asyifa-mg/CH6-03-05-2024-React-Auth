@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import watchImg from "../../public/images/apple-watch.png";
 import Button from "../components/Elements/Button";
 import CardProduct from "../components/Fragments/CardProduct";
@@ -8,7 +8,8 @@ import { getUserName } from "../services/auth.service";
 // const products = [
 //   {
 //     id: 1,
-//     title: "Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport",
+//     title:
+//       "Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport",
 //     price: 599,
 //     image: watchImg,
 //     description: `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor beatae inventore illo fugit similique, voluptate omnis nesciunt quam ipsum incidunt!`,
@@ -24,7 +25,6 @@ import { getUserName } from "../services/auth.service";
 
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState();
   const [user, setUser] = useState("");
 
   const handleLogout = () => {
@@ -53,10 +53,12 @@ const ProductPage = () => {
     <>
       <div className="flex justify-end h-12 bg-blue-600 sticky top-0 text-white items-center px-10">
         {user}
+
         <Button onClick={handleLogout} type="button" classname="ml-5 bg-black">
           Logout
         </Button>
       </div>
+
       <div className="flex flex-wrap justify-center min-h-screen items-center mt-5">
         {products.length > 0 &&
           products.map((product) => (
